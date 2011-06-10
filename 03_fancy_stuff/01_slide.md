@@ -1,4 +1,6 @@
 !SLIDE bullets
 # fancy stuff #
 
-* as wiki backend
+* wiki backend
+* deployment (heroku)
+* local hooks(?)
