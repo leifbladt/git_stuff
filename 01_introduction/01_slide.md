@@ -5,3 +5,9 @@
 # concepts #
 
 * SHA1 hashes
+
+!SLIDE bullets
+# misc #
+
+* git gc
+* line-endings
