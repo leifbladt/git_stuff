@@ -4,6 +4,7 @@
 * amend
 * git init (repo without any hassle)
 * workflows (github)
+* cherry-pick
 * bisect
 * stash
 * stage
