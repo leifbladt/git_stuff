@@ -1,7 +1,16 @@
 !SLIDE bullets
 # use cases #
 
-* amend
+!SLIDE bullets
+# wrong ticket reference #
+* git ci --amend
+
+!SLIDE bullets
+# forgot file in commit #
+* git add missing_file
+* git ci --amend
+
+!SLIDE bullets
 * git init (repo without any hassle)
 * workflows (github)
 * cherry-pick
