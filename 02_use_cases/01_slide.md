@@ -1,5 +1,6 @@
 !SLIDE bullets
 # use cases #
+* fetch vs. pull
 
 !SLIDE bullets
 # wrong ticket reference #
