@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+
+<title>reveal.js - The HTML Presentation Framework</title>
+
+<meta name="description" content="git stuff">
+<meta name="author" content="Leif Bladt">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="css/reveal.min.css">
+<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+if( window.location.search.match( /print-pdf/gi ) ) {
+  var link = document.createElement( 'link' );
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = 'css/print/pdf.css';
+  document.getElementsByTagName( 'head' )[0].appendChild( link );
+}
+</script>
+
+<!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+  <div class="slides">
+    <section>
+      <h1>git stuff</h1>
+    </section>
+
+    <section>
+      <h2>De-centralized? I'm alone</h2>
+      <pre><code data-trim contenteditable>
+          $ git init
+      </code></pre>
+      <ul>
+        <li>Useful for small side-projects</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Was that me?!?</h2>
+      <pre><code data-trim contenteditable>
+$ git stash
+$ mvn clean install
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>What is the stash?</h2>
+      <p>Just a simple stack of diffs</p>
+      <pre><code data-trim contenteditable>
+$ git stash
+$ ...
+$ git stash pop/apply
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Local changes</h2>
+      <pre><code data-trim contenteditable>
+$ git stash
+$ git pull
+$ git stash pop
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Stashes are "invisible"</h2>
+      <p>Sometimes use temporary commits</p>
+      <pre><code data-trim contenteditable>
+$ git ci -a -m "TEMP COMMIT"
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Staging</h2>
+      <p class="fragment">I don't use it all.</p>
+    </section>
+
+    <section>
+      <h2>Changing history</h2>
+    </section>
+
+    <section>
+      <h2>Typo in commit message</h2>
+      <pre><code data-trim contenteditable>
+$ git ci --amend
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Forgot important file</h2>
+      <pre><code data-trim contenteditable>
+$ git add important.txt
+$ git ci --amend
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Cleanup the mess</h2>
+      <p>Interactive rebase</p>
+      <pre><code data-trim contenteditable>
+$ git rebase -i HEAD~3
+      </code></pre>
+
+      <pre><code data-trim contenteditable>
+pick 44d9981 Add log output to message listener
+pick 55ae509 Add missing case in PssDispatcher
+pick 993b06c Update product mock
+
+# Rebase 52257d8..77ca559 onto 52257d8
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Nice try&hellip;</h2>
+      <ul>
+        <li class="fragment">Remove last commit
+        <pre><code data-trim contenteditable>
+$ git reset --hard HEAD~1
+        </code></pre>
+        </li>
+        <li class="fragment">Undo last commit
+        <pre><code data-trim contenteditable>
+$ git reset HEAD~1
+        </code></pre>
+        </li>
+        <li class="fragment">Revert a commit
+        <pre><code data-trim contenteditable>
+$ git revert 7345jf0
+        </code></pre>
+        </li>
+        <li class="fragment">Undo local (uncommitted) changes
+        <pre><code data-trim contenteditable>
+$ git checkout -- &lt;file&gt;
+        </code></pre>
+        </li>
+      </section>
+
+      <section>
+        <h2>Attention</h2>
+        <p>Don't change commits already pushed to a remote</p>
+      </section>
+
+      <section>
+        <h2>Other stuff</h2>
+      </section>
+
+      <section>
+        <h2>Low-hanging fruits</h2>
+        <pre><code data-trim contenteditable>
+$ git cherry-pick 77sdfj2
+        </code></pre>
+        <ul>
+          <li>Get just one commit from another branch</li>
+          <li>This is now a complete new commit (with its own hash)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>This must be there for some time &hellip;</h2>
+        <pre><code data-trim contenteditable>
+$ git bisect start
+$ git bisect good &lt;commit&gt;
+$ git bisect bad &lt;commit&gt;
+$ git bisect good/bad
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Working with tags</h2>
+      </section>
+
+      <section>
+        <h2>Create local tag</h2>
+        <pre><code data-trim contenteditable>
+$ git tag 12345
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Push tag</h2>
+        <pre><code data-trim contenteditable>
+$ git push origin 12345
+$ git push origin --tags
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Delete local tag</h2>
+        <pre><code data-trim contenteditable>
+$ git tag -d 12345
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Delete remote tag</h2>
+        <pre><code data-trim contenteditable>
+$ git push origin :refs/tags/12345
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Working with local branches</h2>
+      </section>
+
+      <section>
+        <h2>Create local branch</h2>
+        <pre><code data-trim contenteditable>
+$ git checkout -b new_branch
+        </code></pre>
+
+        <p>Shortcut for:</p>
+        <pre><code data-trim contenteditable>
+$ git branch new_branch
+$ git checkout new_branch
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Delete local branch</h2>
+        <pre><code data-trim contenteditable>
+$ git branch -d branch_to_delete
+$ git branch -D branch_to_delete
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Merging into master</h2>
+        <ul>
+          <li>
+          Merge (merge commit or fast-forward merge)
+          <pre><code data-trim contenteditable>
+$ git checkout master
+$ git merge new_branch
+          </code></pre>
+          </li>
+
+        <li class="fragment">
+        Force fast-forward merge
+        <pre><code data-trim contenteditable>
+$ git rebase master
+$ git checkout master
+$ git merge new_branch
+        </code></pre>
+        </li>
+      </section>
+
+      <section>
+        <h2>Working with remote branches</h2>
+      </section>
+
+      <section>
+        <h2>Checkout a remote branch</h2>
+        <pre><code data-trim contenteditable>
+        $ git checkout -b new_branch origin/new_branch
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Push local branch</h2>
+        <pre><code data-trim contenteditable>
+$ git push origin new_branch
+        </code></pre>
+      </section>
+
+      <section>
+        <div>
+          <h2>Update local branch</h2>
+          <pre><code data-trim contenteditable>
+$ git pull origin new_branch
+          </code></pre>
+          <p>Shortcut for:</p>
+          <pre><code data-trim contenteditable>
+$ git fetch
+$ git merge origin/new_branch
+          </code></pre>
+        </div>
+        <div class="fragment">
+          <p>Rebase local changes</p>
+          <pre><code data-trim contenteditable>
+$ git pull --rebase origin new_branch
+          </code></pre>
+          <p>Config hint:</p>
+          <pre><code data-trim contenteditable>
+$ git config --global pull.rebase true (git >= 1.7.9)
+          </code></pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>Delete remote branch</h2>
+        <pre><code data-trim contenteditable>
+$ git push origin :branch_to_delete
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Tracking branches</h2>
+        <p>Relationship between a local and a remote branch</p>
+        <pre><code data-trim contenteditable>
+$ git checkout --track origin/new_branch
+$ git pull
+$ git push
+        </code></pre>
+        <p>Config hint:</p>
+        <pre><code data-trim contenteditable>
+$ git config --global push.default simple
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Changes from others</h2>
+        <p>Without changing anything so far</p>
+        <pre><code data-trim contenteditable>
+$ svn st -u
+        </code></pre>
+        <pre><code data-trim contenteditable>
+$ git fetch
+$ git log origin/master..master --oneline
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>UI for git</h2>
+        <ul>
+          <li>IntelliJ IDEA</li>
+          <li>GitHub for Mac</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Attention</h2>
+        <h3>Line-endings</h3>
+        <p>Linux vs. Mac vs. Windows</p>
+      </section>
+
+
+      <section>
+        <h2>Resources</h2>
+        <ul>
+          <li><a href="http://gitimmersion.com/">http://gitimmersion.com/</a></li>
+          <li><a href="http://book.git-scm.com/">http://book.git-scm.com/</a></li>
+          <li><a href="http://gitready.com/">http://gitready.com/</a></li>
+          <li><a href="http://nathanhoad.net/how-to-delete-a-remote-git-tag">http://nathanhoad.net/how-to-delete-a-remote-git-tag</a></li>
+          <li><a href="http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde">http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde</a>
+        </ul>
+      </section>
+    </div>
+
+  </div>
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+
+  <script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+controls: false,
+progress: true,
+history: true,
+center: true,
+
+theme: Reveal.getQueryHash().theme || 'sky', // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+// Parallax scrolling
+// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+// parallaxBackgroundSize: '2100px 900px',
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+  });
+
+  </script>
+
+  </body>
+  </html>
